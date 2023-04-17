@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/12 23:28:56 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:51:35 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../libft_42/libft.h"
+
+//typedef struct s_stack
+//{
+	//int				content;
+	//struct s_tack	*next;
+//}	t_stack;
+
 #endif

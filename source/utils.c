@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/21 03:09:54 by jocasado         ###   ########.fr       */
+/*   Created: 2023/04/21 03:08:56 by jocasado          #+#    #+#             */
+/*   Updated: 2023/04/21 03:09:24 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../headers/push_swap.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "../libft_42/libft.h"
-
-typedef struct s_stack
+void	ft_free2d(char	**tofree)
 {
-	int				content;
-	int				index;
-	struct s_tack	*next;
-}	t_stack;
+	size_t	i;
 
-char	**ft_input_checker(char **argv, int	*num_elem);
-void	ft_free2d(char	**tofree);
-
-#endif
+	i = 0;
+	while (tofree[i])
+		free (tofree[i++]);
+	free (tofree);
+}

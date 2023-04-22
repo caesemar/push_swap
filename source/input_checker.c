@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:04:36 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/21 04:17:50 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/22 05:46:10 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	ft_duplicate(char c, char **argv, int i, int j)
 	{
 		while (argv[i][j])
 		{
-			if (argv[i][j] == c)
+			if (argv[i][j] == c && ft_isdigit(c) == 1)
 				return (1);
 			j++;
 		}
@@ -55,7 +55,7 @@ static int	ft_duplicate(char c, char **argv, int i, int j)
 	}
 	return (0);
 }
-
+//buscar espacio, si hay spacio -> split, pasarle eso a ft_duplicate (hay que hacer tb split aqui de ese *argv y los siguientes) y hacer un strncmp si tienen el mismo len 
 static void	ft_duplicate_check(char **argv)
 {
 	size_t	i;
@@ -67,7 +67,9 @@ static void	ft_duplicate_check(char **argv)
 	{	
 		while (argv[i][j])
 		{
-			if (ft_duplicate(argv[i][j], argv, i, j) == 0)
+			if (argv[i][j] == ' ')
+				j++;
+			else if (ft_duplicate(argv[i][j], argv, i, j) == 0)
 				j++;
 			else
 			{
@@ -80,35 +82,32 @@ static void	ft_duplicate_check(char **argv)
 	}
 }
 
-void	**split_input(char **argv, t_stack *a)
+void	split_input(char **argv, t_stack **a, t_lst *new_node)
 {
 	int		i;
 	char	**temp;
+	int		j;
 
+	j = -1;
 	i = 0;
-	while (argv[i])
+	while (argv[++i])
 	{
-			temp = ft_split(argv[i], ' ');
-			while (temp[j])
-			{
-				a->content = ft_atoi(temp[j][0]);
-				
-			}
-			ft_free2d(temp);
+		temp = ft_split(argv[i], ' ');
+		if (!temp)
+			return ;
+		while (temp[++j])
+			*a = add_to_end(ft_atoi(temp[j]), *a);
+		j = -1;
+		ft_free2d(temp);
 	}
 }
 
-char	**ft_input_checker(char **argv, int	*num_elem, t_stack *a)
+void	ft_input_checker(char **argv, t_stack **a, t_lst *new_node)
 {
 	int	space;
 
 	space = 0;
 	ft_error_check(argv, &space);
 	ft_duplicate_check(argv);
-	split_input(argv, a);
-	while (argv[*num_elem])
-	{		
-		*num_elem = *num_elem + 1;
-	}
-	return (NULL);
+	split_input(argv, a, new_node);
 }

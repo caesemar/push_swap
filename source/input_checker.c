@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:04:36 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/22 05:46:10 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:25:15 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	ft_error_check(char **argv,	int *space)
 	{
 		while (argv[i][j])
 		{
-			if ((ft_isdigit(argv[i][j]) == 1) || argv[i][j] == ' ')
+			if ((ft_isdigit(argv[i][j]) == 1) || argv[i][j] == ' '
+						|| argv[i][j] == '+' || argv[i][j] == '-')
 			{
 				if (argv[i][j] == ' ')
 					*space = 1;
@@ -39,43 +40,30 @@ static void	ft_error_check(char **argv,	int *space)
 		i++;
 	}
 }
-static int	ft_duplicate(char c, char **argv, int i, int j)
+
+static void	ft_duplicate(char **argv, char *temp, int i, int j)
 {
+	char	**temp1;
+
 	j++;
 	while (argv[i])
 	{
-		while (argv[i][j])
+		temp1 = ft_split(argv[i], ' ');
+		if (!temp1)
+			return ;
+		while (temp1[j])
 		{
-			if (argv[i][j] == c && ft_isdigit(c) == 1)
-				return (1);
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	return (0);
-}
-//buscar espacio, si hay spacio -> split, pasarle eso a ft_duplicate (hay que hacer tb split aqui de ese *argv y los siguientes) y hacer un strncmp si tienen el mismo len 
-static void	ft_duplicate_check(char **argv)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 1;
-	j = 0;
-	while (argv[i])
-	{	
-		while (argv[i][j])
-		{
-			if (argv[i][j] == ' ')
-				j++;
-			else if (ft_duplicate(argv[i][j], argv, i, j) == 0)
-				j++;
-			else
+			if (temp1[j][0] == '+' ||
+						(temp1 [j][0] == '-' && temp1[j][1] == '0'))
+				temp1[j]++;
+			if (temp[0] == '+')
+				temp++;
+			if (ft_strncmp(temp, temp1[j], ft_strlen(temp1[j])) == 0)
 			{
-				ft_putstr_fd("Error: duplicate number found\n", 2);
-				exit (1);
-			}		
+				ft_putstr_fd("Error: number duplicated on input\n", 2);
+				exit(1);
+			}
+			j++;
 		}
 		j = 0;
 		i++;
@@ -96,7 +84,10 @@ void	split_input(char **argv, t_stack **a, t_lst *new_node)
 		if (!temp)
 			return ;
 		while (temp[++j])
+		{
+			ft_duplicate(argv, temp[j], i, j);
 			*a = add_to_end(ft_atoi(temp[j]), *a);
+		}
 		j = -1;
 		ft_free2d(temp);
 	}
@@ -108,6 +99,6 @@ void	ft_input_checker(char **argv, t_stack **a, t_lst *new_node)
 
 	space = 0;
 	ft_error_check(argv, &space);
-	ft_duplicate_check(argv);
+	//ft_duplicate_check(argv);
 	split_input(argv, a, new_node);
 }

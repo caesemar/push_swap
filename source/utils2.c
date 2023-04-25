@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 03:52:00 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/25 04:25:10 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:42:48 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,18 @@ void	free_stack(t_lst **stack)
 	}
 	*stack = NULL;
 }
-void	duplicate_error(char **temp1, int status, int j)
+
+int	duplicate_error(char **temp1, int status, int j)
 {
 	ft_putstr_fd("Error: number duplicated on input\n", 2);
 	if (status == 1)
 		temp1[j]--;
 	ft_free2d(temp1);
+	return (1);
+}
+
+void	ft_error(t_lst **stack_a)
+{
+	free_stack(stack_a);
+	exit (1);
 }

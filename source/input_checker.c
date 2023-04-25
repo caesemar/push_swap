@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:04:36 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/25 04:23:48 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:40:25 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,34 @@ static void	ft_error_check(char **argv)
 	}
 }
 
+static char	*plus_on_input(char *temp1, int *status)
+{
+	if (temp1[0] == '+' || (temp1[0] == '-' && temp1[1] == '0'))
+	{
+		*status = *status + 1;
+		temp1++;
+		return (temp1);
+	}
+	else
+		return (temp1);
+}
+
 static int	ft_duplicate(char **argv, char *temp, int i, int j)
 {
 	char	**temp1;
 	int		status;
 
 	status = 0;
-	j++;
 	while (argv[i])
 	{
 		temp1 = ft_split(argv[i], ' ');
-		if (!temp1)
-			return (1);
 		while (temp1[j])
 		{
-			if (temp1[j][0] == '+' ||
-						(temp1 [j][0] == '-' && temp1[j][1] == '0'))
-			{
-				temp1[j]++;
-				status++;
-			}
+			temp1[j] = plus_on_input(temp1[j], &status);
 			if (temp[0] == '+')
 				temp++;
 			if (ft_strncmp(temp, temp1[j], ft_strlen(temp1[j])) == 0)
-			{
-				duplicate_error(temp1, status, j);
-				return (1);
-			}
+				return (duplicate_error(temp1, status, j));
 			if (status == 1)
 				temp1[j]--;
 			j++;
@@ -84,7 +85,7 @@ void	split_input(char **argv, t_lst **a, t_lst *new_node)
 	int		j;
 	int		error;
 
-	error = 1;
+	error = 0;
 	j = -1;
 	i = 0;
 	while (argv[++i])
@@ -94,14 +95,14 @@ void	split_input(char **argv, t_lst **a, t_lst *new_node)
 			return ;
 		while (temp[++j])
 		{
-			error = ft_duplicate(argv, temp[j], i, j);
-			if (error != 1)
+			error = ft_duplicate(argv, temp[j], i, j + 1);
+			if (error == 0)
 				add_to_end(ft_atoi(temp[j]), a);
 		}
 		j = -1;
 		ft_free2d(temp);
 		if (error == 1)
-			exit (1);
+			ft_error(a);
 	}
 }
 

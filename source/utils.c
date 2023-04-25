@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 03:08:56 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/25 02:37:53 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:43:20 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,7 @@ t_lst	*create_node(int content)
 	node->next = NULL;
 	return (node);
 }
-/*
-t_lst	*push(t_lst *top_stack, t_lst *head)
-{
-	t_lst	*new_stack;
 
-	new_stack = (t_lst *)malloc(sizeof(t_lst));
-	if (new_stack == NULL)
-		return (NULL);
-	new_stack->first = head;
-	new_stack->next = top_stack;
-	return (new_stack);
-}
-*/
 void	add_to_end(int value, t_lst **s)
 {
 	t_lst	*new_node;

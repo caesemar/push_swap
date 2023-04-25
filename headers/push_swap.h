@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/25 04:05:38 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:40:41 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	ft_free2d(char	**tofree);
 t_lst	*create_node(int content);
 void	add_to_end(int value, t_lst **s);
 void	free_stack(t_lst **stack);
-void	duplicate_error(char **temp1, int status, int j);
+int		duplicate_error(char **temp1, int status, int j);
+void	ft_error(t_lst **stack_a);
 //FORBIDDEN
 void print_stack(t_lst *s);
 //END

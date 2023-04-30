@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 13:42:41 by jocasado          #+#    #+#             */
-/*   Updated: 2022/09/23 20:45:24 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:53:16 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned char	*s4;
 
 	if (!s1 || !s2)
+		return (-1);
+	if (ft_strlen(s1) != ft_strlen(s2))
 		return (-1);
 	i = 0;
 	s3 = (unsigned char *) s1;

@@ -6,15 +6,13 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:04:36 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/26 23:35:04 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:44:26 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/push_swap.h"
 
-//hacer split o un una variable para ver que estamos en el caso de que j sea mayor q 0
-
-static void	ft_error_check(char **argv)
+static void	ft_error_check(char **a)
 {
 	int	i;
 	int	j;
@@ -22,26 +20,21 @@ static void	ft_error_check(char **argv)
 
 	j = 0;
 	i = 1;
-	while (argv[i])
+	while (a[i])
 	{
 		sign = 1;
-		while (argv[i][j])
+		while (a[i][j])
 		{
-			if ((ft_isdigit(argv[i][j])) || argv[i][j] == ' '
-						|| ((argv[i][j] == '+' || argv[i][j] == '-') \
-						&& (ft_isdigit(argv[i][j + 1]) && sign == 1)))
-			{
+			if ((ft_isdigit(a[i][j])) || a[i][j] == ' '
+						|| ((a[i][j] == '+' || a[i][j] == '-') \
+						&& (ft_isdigit(a[i][j + 1]) && sign == 1)))
 				j++;
-				printf("entre\n");
-			}
 			else
-			{
-				ft_putstr_fd("Error: not a digit or space on input\n", 2);
-				exit(1);
-			}
-			if(argv[i][j - 1] == '+' || argv[i][j - 1] == '-')
+				ft_error2();
+			if (a[i][j - 1] == '+' || a[i][j - 1] == '-' ||
+						ft_isdigit(a[i][j - 1]))
 				sign = 0;
-			if (argv[i][j - 1] == ' ')
+			if (a[i][j - 1] == ' ')
 				sign = 1;
 		}
 		j = 0;
@@ -54,10 +47,10 @@ static char	*plus_on_input(char *temp1, int *status)
 	int	i;
 
 	i = 0;
-	while (*temp1 == '+' || (*temp1 == '-' && *(temp1 + 1) == '0') || \
-		(*temp1 == '0' && *(temp1 + 1) != 0))
+	while (*temp1 == '+' || (*temp1 == '-' && *(temp1 + 1) == '0'
+			&& *(temp1 + 2) == 0)
+		|| (*temp1 == '0' && *(temp1 + 1) != 0))
 	{
-		printf("hola\n");
 		*status = *status + 1;
 		temp1++;
 		i++;
@@ -80,14 +73,11 @@ static int	ft_duplicate(char **argv, char *temp, int i, int j)
 			temp1[j] = plus_on_input(temp1[j], &status);
 			printf("temp: %s\n",temp);
 			printf("temp 1: %s\n",temp1[j]);
-			//temp = ft_temp(temp); 
+			temp = ft_temp(temp); 
 			if (ft_strncmp(temp, temp1[j], ft_strlen(temp1[j])) == 0)
 				return (duplicate_error(temp1, status, j));
 			while (status-- != 0)
-			{	
 				temp1[j]--;
-				printf("xd\n");
-			}
 			j++;
 			status = 0;
 		}

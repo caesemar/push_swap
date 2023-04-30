@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/25 19:40:41 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:32:28 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	add_to_end(int value, t_lst **s);
 void	free_stack(t_lst **stack);
 int		duplicate_error(char **temp1, int status, int j);
 void	ft_error(t_lst **stack_a);
+void	ft_error2(void);
+char	*ft_temp(char *temp1);
 //FORBIDDEN
 void print_stack(t_lst *s);
 //END

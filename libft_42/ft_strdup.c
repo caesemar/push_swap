@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 13:42:41 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/26 19:53:16 by jocasado         ###   ########.fr       */
+/*   Created: 2022/09/21 19:11:41 by jocasado          #+#    #+#             */
+/*   Updated: 2022/09/23 21:27:39 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strdup(const char *s1)
 {
-	size_t			i;
-	unsigned char	*s3;
-	unsigned char	*s4;
+	char		*s2;
+	size_t		i;
 
-	if (!s1 || !s2)
-		return (-1);
-	if (ft_strlen(s1) != ft_strlen(s2))
-		return (-1);
 	i = 0;
-	s3 = (unsigned char *) s1;
-	s4 = (unsigned char *) s2;
-	while ((i < n) && (s3[i] != '\0' || s4[i] != '\0'))
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!s2)
+		return (0);
+	while (i < ft_strlen(s1))
 	{
-		if (s3[i] > s4[i])
-			return (s3[i] - s4[i]);
-		if (s3[i] < s4[i])
-			return (s3[i] - s4[i]);
+		s2[i] = s1[i];
 		i++;
 	}
-	return (0);
+	s2[i] = 0;
+	return (s2);
 }

@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 03:52:00 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/30 18:36:17 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/01 22:58:16 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	free_stack(t_lst **stack)
 	*stack = NULL;
 }
 
-int	duplicate_error(char **temp1, int status, int j)
+int	duplicate_error(char **temp1, int status, int j, int liberar)
 {
-	ft_putstr_fd("Error: number duplicated on input\n", 2);
+	if (liberar == 0)
+		ft_putstr_fd("Error: number duplicated on input\n", 2);
 	while (status)
 	{
 		temp1[j]--;
 		status--;
 	}
-	printf("error : %s\n", temp1[j]);
 	ft_free2d(temp1);
 	return (1);
 }
@@ -53,10 +53,14 @@ void	ft_error2(void)
 }
 
 char	*ft_temp(char *temp1)
-{
-	int	i;
-
-	i = 0;
+{	
+	if ((*temp1 == '-' && *(temp1 + 1) == '0') && *(temp1 + 2))
+	{
+		while ((*temp1 == '-' || *(temp1) == '0') && *(temp1 + 1))
+			temp1++;
+		temp1--;
+		temp1[0] = '-';
+	}
 	while (*temp1 == '+' || (*temp1 == '-' && *(temp1 + 1) == '0'
 			&& *(temp1 + 2) == 0)
 		|| (*temp1 == '0' && *(temp1 + 1) != 0))

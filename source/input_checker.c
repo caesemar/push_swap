@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:04:36 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/30 18:44:26 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/01 23:16:10 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static void	ft_error_check(char **a)
 		sign = 1;
 		while (a[i][j])
 		{
-			if ((ft_isdigit(a[i][j])) || a[i][j] == ' '
-						|| ((a[i][j] == '+' || a[i][j] == '-') \
-						&& (ft_isdigit(a[i][j + 1]) && sign == 1)))
+			if (ft_digit_comparation(a, i, j, sign))
 				j++;
 			else
 				ft_error2();
@@ -44,16 +42,23 @@ static void	ft_error_check(char **a)
 
 static char	*plus_on_input(char *temp1, int *status)
 {
-	int	i;
-
-	i = 0;
+	if ((*temp1 == '-' && *(temp1 + 1) == '0') && *(temp1 + 2))
+	{
+		while ((*temp1 == '-' || *(temp1) == '0') && *(temp1 + 1))
+		{
+			temp1++;
+			*status = *status + 1;
+		}
+		temp1--;
+		*status = *status - 1;
+		temp1[0] = '-';
+	}
 	while (*temp1 == '+' || (*temp1 == '-' && *(temp1 + 1) == '0'
 			&& *(temp1 + 2) == 0)
 		|| (*temp1 == '0' && *(temp1 + 1) != 0))
 	{
 		*status = *status + 1;
 		temp1++;
-		i++;
 	}
 	return (temp1);
 }
@@ -64,40 +69,33 @@ static int	ft_duplicate(char **argv, char *temp, int i, int j)
 	int		status;
 
 	status = 0;
-	while (argv[i])
+	while (argv[++i])
 	{
 		temp1 = ft_split(argv[i], ' ');
-		while (temp1[j])
-		{
-			printf("temp1 antes: %s\n",temp1[j]);	
+		while (temp1[++j])
+		{	
 			temp1[j] = plus_on_input(temp1[j], &status);
-			printf("temp: %s\n",temp);
-			printf("temp 1: %s\n",temp1[j]);
-			temp = ft_temp(temp); 
+			temp = ft_temp(temp);
 			if (ft_strncmp(temp, temp1[j], ft_strlen(temp1[j])) == 0)
-				return (duplicate_error(temp1, status, j));
+				return (duplicate_error(temp1, status, j, 0));
 			while (status-- != 0)
 				temp1[j]--;
-			j++;
 			status = 0;
 		}
 		ft_free2d(temp1);
-		j = 0;
-		i++;
+		j = -1;
 	}
 	return (0);
 }
 
-void	split_input(char **argv, t_lst **a, t_lst *new_node)
+void	split_input(char **argv, t_lst **a, t_lst *new_node, int i)
 {
-	int		i;
 	char	**temp;
 	int		j;
 	int		error;
 
 	error = 0;
 	j = -1;
-	i = 0;
 	while (argv[++i])
 	{
 		temp = ft_split(argv[i], ' ');
@@ -105,9 +103,10 @@ void	split_input(char **argv, t_lst **a, t_lst *new_node)
 			return ;
 		while (temp[++j])
 		{
-			error = ft_duplicate(argv, temp[j], i, j + 1);
+			error = ft_duplicate(argv, temp[j], i - 1, j);
 			if (error == 1)
 				break ;
+			minusto0(temp[j]);
 			add_to_end(ft_atoi(temp[j]), a);
 		}
 		j = -1;
@@ -120,5 +119,5 @@ void	split_input(char **argv, t_lst **a, t_lst *new_node)
 void	ft_input_checker(char **argv, t_lst **a, t_lst *new_node)
 {
 	ft_error_check(argv);
-	split_input(argv, a, new_node);
+	split_input(argv, a, new_node, 0);
 }

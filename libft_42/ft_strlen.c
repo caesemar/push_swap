@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 19:27:20 by jocasado          #+#    #+#             */
-/*   Updated: 2022/09/19 20:52:41 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:21:32 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != 0)
 		i++;
 	return (i);

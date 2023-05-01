@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 03:08:56 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/25 19:43:20 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/01 23:13:31 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,28 @@ void	add_to_end(int value, t_lst **s)
 		while (current_node->next != NULL)
 			current_node = current_node->next;
 		current_node->next = new_node;
+	}
+}
+
+int	ft_digit_comparation(char **a, int i, int j, int sign)
+{
+	if ((ft_isdigit(a[i][j])) || a[i][j] == ' '
+			|| ((a[i][j] == '+' || a[i][j] == '-') \
+				&& (ft_isdigit(a[i][j + 1]) && sign == 1)))
+		return (1);
+	return (0);
+}
+
+void	minusto0(char *temp)
+{
+	if (*temp == '-')
+	{
+		temp++;
+		while (*temp)
+		{
+			if (*temp == '-')
+				temp[0] = '0';
+			temp++;
+		}
 	}
 }

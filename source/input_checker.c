@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:04:36 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/01 23:16:10 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/02 09:42:12 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static int	ft_duplicate(char **argv, char *temp, int i, int j)
 	while (argv[++i])
 	{
 		temp1 = ft_split(argv[i], ' ');
+		if (!temp1)
+			return (1);
 		while (temp1[++j])
 		{	
 			temp1[j] = plus_on_input(temp1[j], &status);
@@ -107,7 +109,7 @@ void	split_input(char **argv, t_lst **a, t_lst *new_node, int i)
 			if (error == 1)
 				break ;
 			minusto0(temp[j]);
-			add_to_end(ft_atoi(temp[j]), a);
+			add_to_end(atoi(temp[j]), a);
 		}
 		j = -1;
 		ft_free2d(temp);
@@ -119,5 +121,6 @@ void	split_input(char **argv, t_lst **a, t_lst *new_node, int i)
 void	ft_input_checker(char **argv, t_lst **a, t_lst *new_node)
 {
 	ft_error_check(argv);
+	input_overflow(argv, 0, -1);
 	split_input(argv, a, new_node, 0);
 }

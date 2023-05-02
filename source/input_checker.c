@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:04:36 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/02 09:42:12 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/02 09:51:04 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	split_input(char **argv, t_lst **a, t_lst *new_node, int i)
 			if (error == 1)
 				break ;
 			minusto0(temp[j]);
-			add_to_end(atoi(temp[j]), a);
+			add_to_end(ft_atoi(temp[j]), a);
 		}
 		j = -1;
 		ft_free2d(temp);

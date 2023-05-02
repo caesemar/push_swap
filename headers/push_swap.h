@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/02 09:42:36 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:53:45 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	ft_error2(void);
 char	*ft_temp(char *temp1);
 int		ft_digit_comparation(char **a, int i, int j, int sign);
 void	minusto0(char *temp);
-void	input_overflow(char **argv, int i, int j);
+void	input_overflow(char **argv, int i, int j, int error);
+void	index_assign(t_lst **a);
+char	*plus_on_input(char *temp1, int *status);
 //FORBIDDEN
 void print_stack(t_lst *s);
 //END

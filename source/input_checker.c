@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:04:36 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/02 09:51:04 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:20:32 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	ft_error_check(char **a)
 	}
 }
 
-static char	*plus_on_input(char *temp1, int *status)
+char	*plus_on_input(char *temp1, int *status)
 {
 	if ((*temp1 == '-' && *(temp1 + 1) == '0') && *(temp1 + 2))
 	{
@@ -121,6 +121,7 @@ void	split_input(char **argv, t_lst **a, t_lst *new_node, int i)
 void	ft_input_checker(char **argv, t_lst **a, t_lst *new_node)
 {
 	ft_error_check(argv);
-	input_overflow(argv, 0, -1);
+	input_overflow(argv, 0, -1, 0);
 	split_input(argv, a, new_node, 0);
+	index_assign(a);
 }

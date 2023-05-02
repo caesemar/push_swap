@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 03:08:56 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/01 23:13:31 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/02 11:43:27 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_lst	*create_node(int content)
 	if (!node)
 		return (NULL);
 	node->content = content;
+	node->index = 0;
 	node->next = NULL;
 	return (node);
 }

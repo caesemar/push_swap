@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:47:07 by jocasado          #+#    #+#             */
-/*   Updated: 2023/04/25 02:49:42 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/02 09:54:08 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,3 @@ int	main(int argc, char **argv)
 	free_stack(&stack_a);
 	return (0);
 }
-
-//controlar numeros mayores de int?

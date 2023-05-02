@@ -6,37 +6,70 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 09:30:32 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/02 09:47:00 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:46:55 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/push_swap.h"
 
-void	input_overflow(char **argv, int i, int j)
+static void	ft_overflow(char *temp1, char *temp, int *error)
+{
+	if (ft_strncmp(temp1, temp, ft_strlen(temp)))
+	{
+		ft_putstr_fd("Input overflow, number over int\n", 2);
+		free (temp1);
+		*error = *error + 1;
+	}
+}
+
+void	input_overflow(char **argv, int i, int j, int error)
 {
 	char	**temp;
-	int		error;
 	char	*temp1;
+	int		status;
 
-	error = 0;
+	status = 0;
 	while (argv[++i])
 	{
 		temp = ft_split(argv[i], ' ');
 		while (temp[++j])
 		{
 			temp1 = ft_itoa(ft_atoi(temp[j]));
-			if (ft_strncmp(temp1, temp[j], ft_strlen(temp[j])))
-			{
-				ft_putstr_fd("Input overflow, number over int\n", 2);
-				free (temp1);
-				error = 1;
+			temp[j] = plus_on_input(temp[j], &status);
+			ft_overflow(temp1, temp[j], &error);
+			while (status-- != 0)
+				temp[j]--;
+			status = 0;
+			if (error == 1)
 				break ;
-			}
 			free (temp1);
 		}
 		j = -1;
 		ft_free2d(temp);
+		if (error == 1)
+			exit (1);
 	}
-	if (error == 1)
-		exit (1);
+}
+
+void	index_assign(t_lst **a)
+{
+	t_lst	*temp;
+	t_lst	*temp1;
+
+	temp = *a;
+	temp1 = temp;
+	while (temp)
+	{
+		if (temp->index == 0)
+		{
+			while (temp1)
+			{
+				if (temp->content > temp1->content)
+					temp->index++;
+				temp1 = temp1->next;
+			}
+		}
+		temp = temp->next;
+		temp1 = *a;
+	}
 }

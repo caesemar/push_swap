@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:47:07 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/02 18:04:46 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/15 22:56:48 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ int	main(int argc, char **argv)
 	printf("###ROTATE####\n");
 	rotate(&stack_a);
 	print_stack(stack_a);
-	printf("###PUSH####\n");
-	push(&stack_a, &stack_b);
-	printf("A\n_\n");
+	min_index(&stack_a);
+	max_index(&stack_a);
+	printf("###BEFORE####\n");
 	print_stack(stack_a);
-	printf("B\n_\n");
-	print_stack(stack_b);
+	printf("###AFTER####\n");
+	three_elem(&stack_a);	
+	print_stack(stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

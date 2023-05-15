@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/02 17:54:37 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/15 22:53:22 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ void	swap(t_lst **a);
 void	reverse_rotate(t_lst **a);
 void	rotate(t_lst **a);
 void	push(t_lst **a, t_lst **b);
+void	print_ra(t_lst **a);
+void	print_rra(t_lst **a);
+void	print_sa(t_lst **a);
+void	print_pa(t_lst **a, t_lst **b);
+int		min_index(t_lst **a);
+int		max_index(t_lst **a);
+void	three_elem(t_lst **a);
 //FORBIDDEN
 void print_stack(t_lst *s);
 //END

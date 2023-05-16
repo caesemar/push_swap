@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/15 22:53:22 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/16 21:12:56 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	print_pa(t_lst **a, t_lst **b);
 int		min_index(t_lst **a);
 int		max_index(t_lst **a);
 void	three_elem(t_lst **a);
+int		stack_size(t_lst **a);
+void	print_pb(t_lst **a, t_lst **b);
+int		sorted(t_lst **a);
+void	less_than_ten_elem(t_lst **a, t_lst **b);
 //FORBIDDEN
 void print_stack(t_lst *s);
 //END

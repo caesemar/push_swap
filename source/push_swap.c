@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:47:07 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/15 22:56:48 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/16 21:22:26 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 		return (0);
 	ft_input_checker(argv, &stack_a, new_node);
 	print_stack(stack_a);
+	/*
 	printf("###SWAP####\n");
 	swap(&stack_a);
 	print_stack(stack_a);
@@ -33,12 +34,13 @@ int	main(int argc, char **argv)
 	printf("###ROTATE####\n");
 	rotate(&stack_a);
 	print_stack(stack_a);
+	*/
 	min_index(&stack_a);
 	max_index(&stack_a);
 	printf("###BEFORE####\n");
 	print_stack(stack_a);
 	printf("###AFTER####\n");
-	three_elem(&stack_a);	
+	less_than_ten_elem(&stack_a,&stack_b);	
 	print_stack(stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);

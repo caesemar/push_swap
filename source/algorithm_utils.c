@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:21:31 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/15 23:09:44 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/16 20:41:26 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ int	sorted(t_lst **a)
 	t_lst	*temp;
 
 	temp = *a;
-	while (temp != NULL)
+	while (temp->next != NULL)
 	{
-		printf("index actual: %i\n", temp->index);
-		printf("index siguiente: %i\n", temp->next->index);
 		if (temp->index < temp->next->index)
 			temp = temp->next;
 		else
@@ -36,7 +34,7 @@ int	stack_size(t_lst **a)
 
 	i = 0;
 	temp = *a;
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 			i++;
 			temp = temp->next;
@@ -99,12 +97,11 @@ void	three_elem(t_lst **a)
 	{
 		index_min = min_index(a);
 		index_max = max_index(a);
-		if (index_min == 1 && index_max == 2)
+		if (index_min == 1 && index_max == 0)
 			print_ra(a);
-		else if (index_min == 0 && index_max == 1)
+		else if (index_min == 2 && index_max == 1)
 			print_rra(a);
 		else
 			print_sa(a);
-		print_stack(*a);
 	}
 }

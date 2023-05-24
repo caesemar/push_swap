@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:21:31 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/16 20:41:26 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:22:12 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	stack_size(t_lst **a)
 	}
 	return (i);
 }
+
 int	min_index(t_lst **a)
 {
 	t_lst	*temp;
@@ -64,6 +65,7 @@ int	min_index(t_lst **a)
 	}
 	return (index);
 }
+
 int	max_index(t_lst **a)
 {
 	t_lst	*temp;

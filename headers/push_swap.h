@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/16 21:12:56 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/24 21:23:40 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_lst
 	struct s_lst	*next;
 }	t_lst;
 
+void	push_index(t_lst **a, t_lst **b, int index);
 void	ft_input_checker(char **argv, t_lst **a, t_lst *new_node);
 void	ft_free2d(char	**tofree);
 t_lst	*create_node(int content);
@@ -54,6 +55,8 @@ int		stack_size(t_lst **a);
 void	print_pb(t_lst **a, t_lst **b);
 int		sorted(t_lst **a);
 void	less_than_ten_elem(t_lst **a, t_lst **b);
+void	push_numb(t_lst **a, t_lst **b, int num);
+int		get_index(t_lst **a, int num);
 //FORBIDDEN
 void print_stack(t_lst *s);
 //END

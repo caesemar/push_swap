@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 20:58:18 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/24 22:30:40 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/26 01:44:50 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ int	get_index(t_lst **a, int num)
 
 	temp = *a;
 	position = 0;
+	printf("num on get_index: %i\n", num);
 	while (temp != NULL)
 	{
+		printf("index: %i\n", temp->index);
 		if (temp->index == num)
 			return (position);
+		printf("position %i\n", position);
 		position++;
 		temp = temp->next;
 	}
@@ -67,11 +70,9 @@ void	push_index(t_lst **a, t_lst **b, int index)
 {
 	t_lst	*temp;
 	int		half;
-	int		new_index;
 
 	half = stack_size(a) / 2;
 	temp = *a;
-	new_index = index;
 	if (index == -1)
 		return ;
 	while (index != 0)
@@ -92,12 +93,22 @@ void	push_index(t_lst **a, t_lst **b, int index)
 	print_pb(a, b);
 }
 
-void	sort_long_stack(t_lst **a)
+void	sort_long_stack(t_lst **a, t_lst **b, int n_chunk)
 {
-	int		chunk;
+	int		chunk_start;
+	int		stack_size_a;
+	int		i;
 
-	while (sorted (a) == 1)
+	stack_size_a = stack_size(a);
+	chunk_start = 0;
+	while ((chunk_start + n_chunk) != stack_size_a)
 	{
-
+		i = n_chunk + 1;
+		while (--i != 0)
+			push_index(a, b, \
+find_chunk_elem(a, chunk_start, chunk_start + n_chunk));
+		chunk_start += n_chunk;
 	}
+	while (stack_size(b) > 0)
+		push_index_b(a, b, max_index(b));
 }

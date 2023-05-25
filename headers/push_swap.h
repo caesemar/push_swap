@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/24 21:23:40 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/26 00:57:20 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ int		sorted(t_lst **a);
 void	less_than_ten_elem(t_lst **a, t_lst **b);
 void	push_numb(t_lst **a, t_lst **b, int num);
 int		get_index(t_lst **a, int num);
+int		find_chunk_elem(t_lst **a, int chunk_start, int chunk_limit);
+void	sort_long_stack(t_lst **a, t_lst **b, int n_chunk);
+void	sort_stack(t_lst **a, t_lst **b);
+void	print_rb(t_lst **a);
+void	print_rrb(t_lst **a);
+void	push_index_b(t_lst **a, t_lst **b, int index);
 //FORBIDDEN
 void print_stack(t_lst *s);
 //END

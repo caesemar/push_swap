@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 03:52:00 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/01 22:58:16 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/27 02:42:40 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_stack(t_lst **stack)
 int	duplicate_error(char **temp1, int status, int j, int liberar)
 {
 	if (liberar == 0)
-		ft_putstr_fd("Error: number duplicated on input\n", 2);
+		ft_putstr_fd("Error\n", 2);
 	while (status)
 	{
 		temp1[j]--;
@@ -48,7 +48,7 @@ void	ft_error(t_lst **stack_a)
 
 void	ft_error2(void)
 {
-	ft_putstr_fd("Error: not a digit or space on input\n", 2);
+	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
 

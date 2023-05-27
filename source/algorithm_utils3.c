@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:56:50 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/26 01:36:45 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/27 04:03:48 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,43 +17,47 @@ int	find_chunk_elem(t_lst **a, int chunk_start, int chunk_limit)
 	int	i;
 	int	position;
 	int	r_position;
-	int	stack_size_;
+	int	from_end;
+	int	r_from_end;
 
 	i = chunk_start;
 	r_position = stack_size(a) + 1;
-	stack_size_ = stack_size(a);
+	from_end = stack_size(a) + 1;
+	r_from_end = stack_size(a) + 1;
 	while (i <= chunk_limit)
 	{
 		position = get_index(a, i);
-		printf("position: %i\n",position);
-		if (r_position > position
-			|| (stack_size(a) - r_position) > (stack_size(a) - position))
-			r_position = position;
+		if (position >= 0)
+		{
+			from_end = stack_size(a) - position;
+			if (position > -1 && (((r_position > position) && \
+				(r_from_end > position)) || \
+				((r_position > from_end) && (r_from_end > from_end))))
+				r_position = position;
+			r_from_end = stack_size(a) - r_position;
+		}
 		i++;
 	}
-	printf("r_position: %i\n",r_position);
 	return (r_position);
 }
 
 void	push_index_b(t_lst **a, t_lst **b, int index)
 {
-	t_lst	*temp;
-	int		half;
-
-	half = stack_size(a) / 2;
-	temp = *a;
 	if (index == -1)
 		return ;
 	while (index != 0)
 	{
-		if (index < half)
+		if (index <= stack_size(b) / 2)
 		{
-			print_rb(b);
+			if (index == 1)
+				print_sb(b);
+			else
+				print_rb(b);
 			index--;
 		}
 		else
 		{
-			if (index >= stack_size(a))
+			if (index >= stack_size(b))
 				break ;
 			print_rrb(b);
 			index++;

@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 09:30:32 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/02 14:46:55 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/27 02:43:20 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	ft_overflow(char *temp1, char *temp, int *error)
 {
 	if (ft_strncmp(temp1, temp, ft_strlen(temp)))
 	{
-		ft_putstr_fd("Input overflow, number over int\n", 2);
+		ft_putstr_fd("Error\n", 2);
 		free (temp1);
 		*error = *error + 1;
 	}

@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:41:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/26 00:57:20 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/27 03:58:13 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "../libft_42/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_lst
 {
@@ -26,7 +26,7 @@ typedef struct s_lst
 }	t_lst;
 
 void	push_index(t_lst **a, t_lst **b, int index);
-void	ft_input_checker(char **argv, t_lst **a, t_lst *new_node);
+void	ft_input_checker(char **argv, t_lst **a);
 void	ft_free2d(char	**tofree);
 t_lst	*create_node(int content);
 void	add_to_end(int value, t_lst **s);
@@ -63,7 +63,5 @@ void	sort_stack(t_lst **a, t_lst **b);
 void	print_rb(t_lst **a);
 void	print_rrb(t_lst **a);
 void	push_index_b(t_lst **a, t_lst **b, int index);
-//FORBIDDEN
-void print_stack(t_lst *s);
-//END
+void	print_sb(t_lst **a);
 #endif

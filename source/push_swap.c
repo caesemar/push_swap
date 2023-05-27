@@ -6,7 +6,7 @@
 /*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:47:07 by jocasado          #+#    #+#             */
-/*   Updated: 2023/05/27 04:37:19 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:22:24 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	ft_input_checker(argv, &stack_a);
+	if (stack_a == NULL)
+		return (-1);
 	sort_stack(&stack_a, &stack_b);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
@@ -30,14 +32,17 @@ int	main(int argc, char **argv)
 
 void	sort_stack(t_lst **a, t_lst **b)
 {
-	if (stack_size(a) <= 3)
-		three_elem(a);
-	else if (stack_size(a) <= 10)
-		less_than_ten_elem(a, b);
-	else if (stack_size(a) == 100)
-		sort_long_stack(a, b, stack_size(a) / 7);
-	else if (stack_size(a) == 500)
-		sort_long_stack(a, b, stack_size(a) / 15);
-	else
-		sort_long_stack(a, b, stack_size(a) / 7);
+	if (sorted(a) == 1)
+	{
+		if (stack_size(a) <= 3)
+			three_elem(a);
+		else if (stack_size(a) <= 10)
+			less_than_ten_elem(a, b);
+		else if (stack_size(a) == 100)
+			sort_long_stack(a, b, stack_size(a) / 7);
+		else if (stack_size(a) == 500)
+			sort_long_stack(a, b, stack_size(a) / 15);
+		else
+			sort_long_stack(a, b, stack_size(a) / 7);
+	}
 }

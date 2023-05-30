@@ -6,7 +6,7 @@
 #    By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 03:06:52 by caesemar          #+#    #+#              #
-#    Updated: 2023/05/27 13:09:46 by jocasado         ###   ########.fr        #
+#    Updated: 2023/05/30 19:10:38 by jocasado         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ CFILES = \
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 OBJS = $(CFILES:.c=.o)
 ################################################################################
-.PHONY: all re fclean clean tests
+.PHONY: all re fclean clean tests_l tests_m
 ################################################################################
 
 all:        $(NAME)
@@ -105,7 +105,7 @@ tests_m: test1_m test2_m test3_m test4_m
 test1_m:
 		
 			@echo "$(GREEN)##3 NUMBERS##$(DEFAULT)"		
-			@echo "./$(NAME) $(ARG2)\n"	
+			@echo "./$(NAME) $(ARG1)\n"	
 			@./$(NAME) $(ARG1) | ./checker_Mac $(ARG1)
 			@echo "Move number: $(GREEN)"
 			@./$(NAME) $(ARG1) | wc -l
